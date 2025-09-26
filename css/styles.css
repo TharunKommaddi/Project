@@ -30,7 +30,7 @@ body {
     background: #0066cc;
     border-radius: 50%;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 99999; /* Increased from 9999 */
     mix-blend-mode: difference;
     transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 1;
@@ -43,7 +43,7 @@ body {
     border: 2px solid #0066cc;
     border-radius: 50%;
     pointer-events: none;
-    z-index: 9998;
+    z-index: 99998; /* Increased from 9998 */
     mix-blend-mode: difference;
     transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0.5;
@@ -71,13 +71,13 @@ input:focus, textarea:focus {
 .menu-overlay.active .cursor {
     background: #ffffff !important;
     mix-blend-mode: normal !important;
-    z-index: 10001 !important;
+    z-index: 10001 !important; /* Increase this value */
 }
 
 .menu-overlay.active .cursor-follower {
     border-color: #ffffff !important;
     mix-blend-mode: normal !important;
-    z-index: 10000 !important;
+    z-index: 10001 !important; /* Increase this value to match cursor */
 }
 
 /* Magnetic Element Base Styles */
@@ -395,7 +395,7 @@ input:focus, textarea:focus {
 .menu-item {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between; /* Changed from center to space-between */
     gap: 2rem;
     background: none;
     border: none;
@@ -412,8 +412,10 @@ input:focus, textarea:focus {
     position: relative;
     overflow: hidden;
     text-decoration: none;
-    width: auto;
+    width: 100%; /* Ensure all items have same width */
+    max-width: 350px; /* Set consistent max width */
     padding: 1rem 2rem;
+    box-sizing: border-box; /* Include padding in width calculation */
 }
 
 @keyframes menuItemSlide {
@@ -427,11 +429,17 @@ input:focus, textarea:focus {
     font-size: 1rem;
     opacity: 0.4;
     font-weight: 400;
+    min-width: 30px; /* Ensure consistent width for numbers */
+    text-align: left;
+    flex-shrink: 0; /* Prevent shrinking */
 }
 
 .menu-text {
     position: relative;
+    flex: 1; /* Take up remaining space */
+    text-align: center; /* Center the main text */
 }
+
 
 .menu-text::after {
     content: '';
@@ -449,6 +457,9 @@ input:focus, textarea:focus {
     opacity: 0;
     transform: translateX(-20px);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 30px; /* Ensure consistent width for arrows */
+    text-align: right;
+    flex-shrink: 0; /* Prevent shrinking */
 }
 
 .menu-item:hover .menu-text::after {
