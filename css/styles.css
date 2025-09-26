@@ -1939,8 +1939,9 @@ input:focus, textarea:focus {
         display: none;
     }
     
-    .floating-menu.show-on-scroll {
-        display: block;
+    .floating-menu.show-on-scroll,
+    .floating-menu.active {
+        display: block !important;
     }
     
     .nav.scrolled .nav-right-mobile {
@@ -1948,6 +1949,7 @@ input:focus, textarea:focus {
         pointer-events: none;
     }
 }
+
 
 /* Responsive Design */
 @media (max-width: 1200px) {
