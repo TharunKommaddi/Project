@@ -1282,13 +1282,16 @@ input:focus, textarea:focus {
     box-shadow: 0 5px 15px rgba(0, 102, 204, 0.3);
 }
 
-.education-section, .publications-section {
+/* ADD THESE NEW RULES */
+
+/* Timeline sections styling */
+.experience, .education-section, .publications-section {
     margin-top: 4rem;
 }
 
 .education-section h3, .publications-section h3 {
     font-size: 1.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     color: white;
     position: relative;
 }
@@ -1304,32 +1307,62 @@ input:focus, textarea:focus {
     border-radius: 2px;
 }
 
+/* Timeline items - make them look like experience items */
 .education-item, .publication-item {
-    margin-bottom: 2rem;
-    padding: 1.5rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
     transition: all 0.3s ease;
 }
 
 .education-item:hover, .publication-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(0, 102, 204, 0.3);
-    transform: translateY(-2px);
+    transform: translateX(10px);
 }
 
+/* Timeline dots */
+.education-item::before, .publication-item::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    background: linear-gradient(135deg, #0066cc, #66ccff);
+    border-radius: 50%;
+    margin-top: 0.5rem;
+    position: relative;
+    flex-shrink: 0;
+}
+
+/* White center dots */
+.education-item::after, .publication-item::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 12px;
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+}
+
+/* Connecting lines */
+.education-item:not(:last-child)::before,
+.publication-item:not(:last-child)::before {
+    box-shadow: 8px 60px 0 -6px rgba(0, 102, 204, 0.5);
+}
+
+/* Content styling */
 .education-item h4, .publication-item h4 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
-    color: #66ccff;
+    color: white;
 }
 
 .education-item p, .publication-item p {
     font-size: 0.9rem;
+    color: #66ccff;
+    font-weight: 500;
     opacity: 0.8;
-    color: white;
     line-height: 1.6;
 }
 
