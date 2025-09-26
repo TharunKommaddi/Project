@@ -315,11 +315,11 @@ input:focus, textarea:focus {
 }
 
 .floating-menu.active .floating-line:nth-child(1) {
-    transform: rotate(45deg) translate(1px, 1px);
+    transform: rotate(45deg) translate(1px, 1px) !important;
 }
 
 .floating-menu.active .floating-line:nth-child(2) {
-    transform: rotate(-45deg) translate(1px, -1px);
+    transform: rotate(-45deg) translate(1px, -1px) !important;
 }
 
 /* Magnetic effect for floating button and lines */
