@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeCursor();
     initializeScroll();
     initializeMagnetic();
+    initializeFloatingMenuMagnetic();
 });
 
 // Custom Cursor Implementation
@@ -58,7 +59,7 @@ function initializeCursor() {
     });
 }
 
-// Scroll handling
+// Scroll handling - FIXED for mobile
 function initializeScroll() {
     const nav = document.querySelector('.nav');
     const floatingMenu = document.querySelector('.floating-menu');
@@ -71,9 +72,8 @@ function initializeScroll() {
             isScrolled = newIsScrolled;
             nav.classList.toggle('scrolled', isScrolled);
             
-            if (window.innerWidth > 900) {
-                floatingMenu.classList.toggle('show-on-scroll', isScrolled);
-            }
+            // FIXED: Remove the condition so it works on mobile too
+            floatingMenu.classList.toggle('show-on-scroll', isScrolled);
         }
     };
 
@@ -279,25 +279,7 @@ function initializeContactForm() {
     });
 }
 
-// Initialize contact form if on contact page
-document.addEventListener('DOMContentLoaded', function() {
-    initializeContactForm();
-});
-
-// Handle window resize
-window.addEventListener('resize', () => {
-    const floatingMenu = document.querySelector('.floating-menu');
-    
-    if (floatingMenu && window.innerWidth > 900) {
-        floatingMenu.classList.toggle('show-on-scroll', isScrolled);
-    } else if (floatingMenu) {
-        floatingMenu.classList.remove('show-on-scroll');
-    }
-});
-
-
-
-// Add this to your script.js file
+// Floating menu magnetic effect
 function initializeFloatingMenuMagnetic() {
     const floatingButton = document.querySelector('.floating-menu-button');
     const floatingLines = document.querySelectorAll('.floating-line');
@@ -335,11 +317,7 @@ function initializeFloatingMenuMagnetic() {
     });
 }
 
-// Call this function when DOM is loaded
+// Initialize contact form if on contact page
 document.addEventListener('DOMContentLoaded', function() {
-    // ... your existing initialization code ...
-    initializeFloatingMenuMagnetic();
+    initializeContactForm();
 });
-
-
-
