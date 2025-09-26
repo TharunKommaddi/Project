@@ -294,3 +294,52 @@ window.addEventListener('resize', () => {
         floatingMenu.classList.remove('show-on-scroll');
     }
 });
+
+
+
+// Add this to your script.js file
+function initializeFloatingMenuMagnetic() {
+    const floatingButton = document.querySelector('.floating-menu-button');
+    const floatingLines = document.querySelectorAll('.floating-line');
+    
+    if (!floatingButton || !floatingLines.length) return;
+    
+    floatingButton.addEventListener('mousemove', (e) => {
+        // Don't apply effect if menu is active (when lines are rotated)
+        const floatingMenu = document.querySelector('.floating-menu');
+        if (floatingMenu && floatingMenu.classList.contains('active')) return;
+        
+        const rect = floatingButton.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        const deltaX = e.clientX - centerX;
+        const deltaY = e.clientY - centerY;
+        
+        // Adjust strength - lower values = less movement
+        const strength = 0.3;
+        const moveX = deltaX * strength;
+        const moveY = deltaY * strength;
+        
+        // Apply movement to both lines
+        floatingLines.forEach(line => {
+            line.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+    });
+    
+    floatingButton.addEventListener('mouseleave', () => {
+        // Reset lines to center position when mouse leaves
+        floatingLines.forEach(line => {
+            line.style.transform = 'translate(0px, 0px)';
+        });
+    });
+}
+
+// Call this function when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // ... your existing initialization code ...
+    initializeFloatingMenuMagnetic();
+});
+
+
+
